@@ -1,0 +1,20 @@
+# Python cache
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+
+# JetBrains IDE
+.idea/
+
+# Virtual environment
+.venv/
+venv/
+
+# Tests
+tests/
+
+# Resources
+src/en_ru_translator/resources/
