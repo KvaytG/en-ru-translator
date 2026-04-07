@@ -13,17 +13,13 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 
 class Translator:
-    def __init__(self):
+    def __init__(self, model_name: str = "KvaytG/marian-mt-en-ru-high-precision"):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        model_name = "KvaytG/marian-mt-en-ru-high-precision"
         self.tokenizer = MarianTokenizer.from_pretrained(model_name)
         self.model = MarianMTModel.from_pretrained(model_name).to(self.device)
         self.model.eval()
         self.cache = TranslationCache()
         self.sentencizer = Sentencizer()
-
-    def translate(self, text: Optional[str]) -> Optional[str]:
-        return self.translate_batch([text])[0]
 
     def translate_batch(self, texts: list[Optional[str]]) -> list[Optional[str]]:
         if not texts:
@@ -67,3 +63,6 @@ class Translator:
                 results[idx] = texts[idx]
         self.cache.save()
         return results
+
+    def translate(self, text: Optional[str]) -> Optional[str]:
+        return self.translate_batch([text])[0]
