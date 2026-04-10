@@ -19,7 +19,7 @@ texts = [
 translations = translator.translate_batch(texts)
 print(translations)
 
-# Translation a single line
+# Translating a single line
 translation = translator.translate("This is a single sentence.")
 print(translation)
 ```
